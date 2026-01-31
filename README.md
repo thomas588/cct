@@ -1,11 +1,13 @@
 # CCT - Claude Code Team
 
+[![npm version](https://badge.fury.io/js/claude-code-team.svg)](https://www.npmjs.com/package/claude-code-team)
+
 Orchestrate multiple Claude sessions to work on complex tasks in parallel.
 
 ## Installation
 
 ```bash
-npm install -g cct-cli
+npm install -g claude-code-team
 ```
 
 ## Usage
