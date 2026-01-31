@@ -1,0 +1,4 @@
+node_modules/
+cct-test/
+*.log
+.DS_Store

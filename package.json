@@ -1,0 +1,27 @@
+{
+  "name": "claude-code-team",
+  "version": "0.1.0",
+  "description": "Claude Code Team - orchestrate multiple Claude sessions",
+  "bin": {
+    "cct": "./bin/cct.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "templates"
+  ],
+  "keywords": [
+    "claude",
+    "ai",
+    "orchestrator",
+    "agents",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomas588/cct.git"
+  },
+  "homepage": "https://github.com/thomas588/cct#readme"
+}
