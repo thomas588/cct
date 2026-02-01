@@ -2,3 +2,4 @@ node_modules/
 cct-test/
 *.log
 .DS_Store
+cct-archive/
