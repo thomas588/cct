@@ -1,6 +1,6 @@
 {
   "name": "claude-code-team",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Claude Code Team - orchestrate multiple Claude sessions",
   "bin": {
     "cct": "./bin/cct.js"
