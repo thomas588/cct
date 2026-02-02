@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/claude-code-team.svg)](https://www.npmjs.com/package/claude-code-team)
 
-Orchestrate multiple Claude sessions to work on complex tasks in parallel.
+Orchestrate multiple Claude sessions with hierarchical team structure.
 
 ## Installation
 
@@ -31,22 +31,42 @@ claude --dangerously-skip-permissions
 ### Give orchestrator a task
 
 ```
-> Create a web service for generating startup ideas...
+> Analyze Smart Traffic market in Central Asia
 ```
 
-The orchestrator will:
-1. Ask clarifying questions
-2. Create worker sessions (specialists)
-3. Delegate tasks to workers
-4. Coordinate and aggregate results
+## Hierarchy
+
+```
+Orchestrator (you talk to this)
+    ↓ creates & manages
+Leads (Team Leads - coordinate domains)
+    ↓ create & manage
+Workers (Specialists - do actual work)
+```
+
+| Level | Creates | Manages | Does Work |
+|-------|---------|---------|-----------|
+| Orchestrator | Leads | Leads | NO |
+| Leads | Workers | Workers | NO |
+| Workers | — | — | YES |
 
 ## Project Structure
 
 After `cct init`:
 ```
 my-project/
-├── CLAUDE.md           # Orchestrator (reads this automatically)
-└── features/           # Agent & skill templates
+├── CLAUDE.md              # Orchestrator instructions
+├── features/              # Capabilities catalog
+│   ├── agents.md          # Available agent roles
+│   ├── skills.md          # Available skills
+│   ├── mcps.md            # Available MCP tools
+│   └── commands.md        # Available commands
+├── templates/
+│   └── lead.md            # Lead template (for orchestrator)
+├── leads/                 # Empty (leads created on demand)
+├── .context/              # Shared project context
+├── .outputs/              # Lead outputs
+└── .sessions/             # Session IDs
 ```
 
 After orchestrator runs:
@@ -54,23 +74,43 @@ After orchestrator runs:
 my-project/
 ├── CLAUDE.md
 ├── features/
-├── .sessions/          # Session IDs for Q&A
-├── .outputs/           # Worker results
+├── templates/
 ├── .context/
-│   └── project.md      # Shared project context
-├── workers/
-│   └── backend_worker/
-│       └── CLAUDE.md   # Worker identity
-├── backend/            # Actual code (written by workers)
-└── frontend/
+│   └── project.md         # Project context (written by orchestrator)
+├── .sessions/
+│   ├── orchestrator.id
+│   └── ba_lead.id
+├── .outputs/
+│   ├── ba_analysis.md     # Lead output
+│   └── ba_lead.status     # Completion signal
+└── leads/
+    └── ba_lead/
+        ├── CLAUDE.md      # Lead instructions
+        ├── .outputs/      # Worker outputs
+        │   ├── market.md
+        │   └── competitors.md
+        └── workers/
+            ├── market_analyst/
+            │   └── CLAUDE.md
+            └── competitive_analyst/
+                └── CLAUDE.md
 ```
 
 ## How It Works
 
-1. **Orchestrator** reads CLAUDE.md and understands its role
-2. **Orchestrator** creates workers (separate Claude sessions)
-3. **Workers** execute tasks and write results to `.outputs/`
-4. **Orchestrator** aggregates results and responds to user
+1. **User** gives task to Orchestrator
+2. **Orchestrator** writes `.context/project.md` and creates Leads
+3. **Leads** create Workers from `features/` catalog
+4. **Workers** execute tasks, write to Lead's `.outputs/`
+5. **Leads** aggregate worker results, write to root `.outputs/`
+6. **Orchestrator** reads Lead outputs, responds to User
+
+## Workers vs Subagents
+
+| Type | Command | Use When |
+|------|---------|----------|
+| Worker | `claude -p "TASK" &` | One-shot, no Q&A |
+| Subagent | `claude --session-id $ID -p "TASK"` | Need iteration |
 
 ## License
 
