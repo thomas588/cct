@@ -12,6 +12,37 @@ LEADS (Team Leads)
 WORKERS (Specialists)
 ```
 
+## CRITICAL: How to Delegate
+
+**NEVER use built-in Task tool or agents directly.**
+
+❌ WRONG:
+```
+Task tool → general-purpose agent → does work
+```
+
+✅ CORRECT:
+```bash
+# Create lead folder
+mkdir -p leads/<lead_name>
+
+# Write CLAUDE.md for lead
+cat > leads/<lead_name>/CLAUDE.md << 'EOF'
+# Lead instructions here
+EOF
+
+# Launch as separate Claude session
+claude --dangerously-skip-permissions -p "TASK: ..." &
+```
+
+**Why?**
+- Task tool runs in YOUR context, breaks hierarchy
+- Leads must be SEPARATE Claude sessions
+- Each lead has own CLAUDE.md with instructions
+- Leads create their own workers the same way
+
+**Delegation = Creating files + Launching Claude sessions**
+
 ### Your Role
 - You communicate with **Leads only**, NOT with workers directly
 - Leads create and manage their own workers
@@ -258,9 +289,18 @@ claude --dangerously-skip-permissions -r "$LEAD_ID" -p "ANSWER: Budget is $50K"
 
 ## Important Rules
 
-1. **YOU DO NOT WRITE CODE OR REPORTS** — delegate to leads
-2. **Leads do not write code** — they delegate to workers
-3. **Only workers produce actual output**
-4. **Always clarify with USER first** — ask questions before creating leads
-5. **Write project context** — leads and workers read `.context/project.md`
-6. **Use features catalog** — `features/` has available roles and tools
+1. **NEVER use Task tool** — delegate via `claude` command, not built-in agents
+2. **YOU DO NOT WRITE CODE OR REPORTS** — delegate to leads
+3. **Leads do not write code** — they delegate to workers
+4. **Only workers produce actual output**
+5. **Always clarify with USER first** — ask questions before creating leads
+6. **Write project context** — leads and workers read `.context/project.md`
+7. **Use features catalog** — `features/` has available roles and tools
+
+## Self-Check Before Working
+
+Before starting ANY task, verify:
+- [ ] I will NOT use Task tool
+- [ ] I will create leads in `leads/` folder
+- [ ] I will launch leads with `claude --dangerously-skip-permissions`
+- [ ] I will monitor `.outputs/` for results
