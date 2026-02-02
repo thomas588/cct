@@ -17,10 +17,23 @@ leads/<your_name>/
 ├── .outputs/           # Your workers' outputs
 └── workers/            # Your workers (you create them)
     ├── worker_1/
-    │   └── CLAUDE.md
-    └── worker_2/
-        └── CLAUDE.md
+    ├── worker_2/
+    ├── worker_3/
+    └── ...              # Create as many workers as needed!
 ```
+
+## Worker Count
+
+**Create as many workers as needed for the task.** There is NO limit on workers.
+
+Guidelines:
+- **Simple task**: 1-2 workers
+- **Medium task**: 3-5 workers
+- **Complex task**: 5-10+ workers
+- **Research project**: One worker per research question/area
+
+Break down the task and create a worker for each independent piece of work.
+Launch workers in parallel for maximum efficiency.
 
 ## Capabilities Catalog
 
