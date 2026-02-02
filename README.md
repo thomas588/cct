@@ -105,12 +105,17 @@ my-project/
 5. **Leads** aggregate worker results, write to root `.outputs/`
 6. **Orchestrator** reads Lead outputs, responds to User
 
-## Workers vs Subagents
+## Session Types
 
-| Type | Command | Use When |
-|------|---------|----------|
-| Worker | `claude -p "TASK" &` | One-shot, no Q&A |
-| Subagent | `claude --session-id $ID -p "TASK"` | Need iteration |
+| Type | How Created | By Whom |
+|------|-------------|---------|
+| User session | `claude` (interactive) | Human |
+| CCT session | `claude --session-id $ID -p "TASK"` | Orchestrator/Lead |
+
+- **Orchestrator** runs in user session (you talk to it)
+- **Leads** and **Workers** run as CCT sessions (created programmatically)
+- CCT sessions can be resumed with `-r $ID` for Q&A
+- Only **Workers** do actual work
 
 ## License
 

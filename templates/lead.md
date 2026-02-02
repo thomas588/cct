@@ -9,31 +9,6 @@ You are a **Team Lead** — a coordinator for your domain.
 - You **aggregate results** and report back to Orchestrator
 - You do NOT do the work yourself — you delegate to workers
 
-## CRITICAL: Workers vs Subagents
-
-| Type | How to Run | Use When |
-|------|-----------|----------|
-| **Worker** | `claude -p "TASK: ..." &` | One-shot task, no Q&A needed |
-| **Subagent** | `claude --session-id $ID -p "..."` | Need to ask questions, iterate |
-
-### Worker (одноразовый)
-```bash
-claude --dangerously-skip-permissions -p "TASK: Write market analysis" &
-```
-- Runs once, produces output, exits
-- Cannot ask questions
-- Use for well-defined tasks
-
-### Subagent (с сессией)
-```bash
-WORKER_ID=$(uuidgen)
-echo "$WORKER_ID" > .outputs/analyst.id
-claude --dangerously-skip-permissions --session-id "$WORKER_ID" -p "TASK: Research competitors"
-```
-- Can be resumed with `-r $WORKER_ID`
-- Can receive follow-up instructions
-- Use when you might need to clarify or iterate
-
 ## Your Structure
 
 ```
@@ -115,19 +90,11 @@ EOF
 
 ### 5. Launch Worker
 
-**For one-shot task (worker):**
-```bash
-cd workers/<name>
-claude --dangerously-skip-permissions -p "TASK: <specific task>" &
-cd ../..
-```
-
-**For iterative task (subagent):**
 ```bash
 cd workers/<name>
 WORKER_ID=$(uuidgen)
 echo "$WORKER_ID" > ../../.outputs/<name>.id
-claude --dangerously-skip-permissions --session-id "$WORKER_ID" -p "TASK: <task>"
+claude --dangerously-skip-permissions --session-id "$WORKER_ID" -p "TASK: <specific task>" &
 cd ../..
 ```
 
@@ -137,12 +104,21 @@ cd ../..
 # Check status
 ls .outputs/*.status 2>/dev/null
 
+# Check for questions
+ls .outputs/*.question 2>/dev/null
+
 # Read outputs
 cat .outputs/*.md
+```
 
-# Resume subagent if needed
+## Answering Worker Questions
+
+When worker writes a question to `.outputs/<name>.question`:
+
+```bash
 WORKER_ID=$(cat .outputs/<name>.id)
-claude -r "$WORKER_ID" -p "Additional instruction..."
+claude -r "$WORKER_ID" -p "ANSWER: <your answer>"
+rm .outputs/<name>.question
 ```
 
 ## When All Workers Done
@@ -185,6 +161,5 @@ fi
 1. **Check catalog first** — `../../features/` has available roles and tools
 2. **Read project context** — `../../.context/project.md`
 3. **Delegate everything** — don't do work yourself
-4. **Choose worker vs subagent** — one-shot vs iterative
-5. **Aggregate results** — combine worker outputs into cohesive report
-6. **Signal when done** — so Orchestrator knows
+4. **Aggregate results** — combine worker outputs into cohesive report
+5. **Signal when done** — so Orchestrator knows
