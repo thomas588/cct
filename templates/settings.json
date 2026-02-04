@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "command": "bash .cct/hooks/check-leads.sh"
+      }
+    ]
+  }
+}

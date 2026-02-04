@@ -3,3 +3,4 @@ cct-test/
 *.log
 .DS_Store
 cct-archive/
+tmp/

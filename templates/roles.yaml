@@ -1,0 +1,215 @@
+# CCT Roles Catalog
+# Use: Лид/Оркестратор выбирает роль для воркера
+# Install: npx claude-code-templates@latest <command> --yes
+
+# ============================================================================
+# AGENTS (roles for workers)
+# ============================================================================
+
+agents:
+
+  # --- Development Team ---
+  frontend-developer:
+    description: "React/Vue/Angular frontend specialist"
+    install: "npx claude-code-templates@latest --agent=development-team/frontend-developer --yes"
+
+  backend-architect:
+    description: "System design and architecture"
+    install: "npx claude-code-templates@latest --agent=development-team/backend-architect --yes"
+
+  fullstack-developer:
+    description: "Full stack web development"
+    install: "npx claude-code-templates@latest --agent=development-team/fullstack-developer --yes"
+
+  devops-engineer:
+    description: "CI/CD, infrastructure, deployment"
+    install: "npx claude-code-templates@latest --agent=development-team/devops-engineer --yes"
+
+  ui-ux-designer:
+    description: "User interface and experience design"
+    install: "npx claude-code-templates@latest --agent=development-team/ui-ux-designer --yes"
+
+  # --- Development Tools ---
+  code-reviewer:
+    description: "Code review and quality"
+    install: "npx claude-code-templates@latest --agent=development-tools/code-reviewer --yes"
+
+  # --- Database ---
+  database-architect:
+    description: "Database design and modeling"
+    install: "npx claude-code-templates@latest --agent=database/database-architect --yes"
+
+  database-optimizer:
+    description: "Query optimization and performance"
+    install: "npx claude-code-templates@latest --agent=database/database-optimizer --yes"
+
+  database-optimization:
+    description: "Database performance tuning"
+    install: "npx claude-code-templates@latest --agent=database/database-optimization --yes"
+
+  # --- Programming Languages ---
+  typescript-pro:
+    description: "TypeScript expert"
+    install: "npx claude-code-templates@latest --agent=programming-languages/typescript-pro --yes"
+
+  python-pro:
+    description: "Python expert"
+    install: "npx claude-code-templates@latest --agent=programming-languages/python-pro --yes"
+
+  sql-pro:
+    description: "SQL expert"
+    install: "npx claude-code-templates@latest --agent=programming-languages/sql-pro --yes"
+
+  # --- Research Team ---
+  business-analyst:
+    description: "Business analysis and requirements"
+    install: "npx claude-code-templates@latest --agent=business-marketing/business-analyst --yes"
+
+  technical-researcher:
+    description: "Technical research and evaluation"
+    install: "npx claude-code-templates@latest --agent=deep-research-team/technical-researcher --yes"
+
+  data-analyst:
+    description: "Data analysis and insights"
+    install: "npx claude-code-templates@latest --agent=deep-research-team/data-analyst --yes"
+
+  research-orchestrator:
+    description: "Research coordination"
+    install: "npx claude-code-templates@latest --agent=deep-research-team/research-orchestrator --yes"
+
+  # --- Performance ---
+  react-performance-optimization:
+    description: "React performance specialist"
+    install: "npx claude-code-templates@latest --agent=performance-testing/react-performance-optimization --yes"
+
+  react-performance-optimizer:
+    description: "React optimization"
+    install: "npx claude-code-templates@latest --agent=web-tools/react-performance-optimizer --yes"
+
+  # --- Expert Advisors ---
+  architect-review:
+    description: "Architecture review and advice"
+    install: "npx claude-code-templates@latest --agent=expert-advisors/architect-review --yes"
+
+  # --- DevOps Infrastructure ---
+  monitoring-specialist:
+    description: "Monitoring and observability"
+    install: "npx claude-code-templates@latest --agent=devops-infrastructure/monitoring-specialist --yes"
+
+# ============================================================================
+# SKILLS (modes/capabilities)
+# ============================================================================
+
+skills:
+
+  # --- Development ---
+  webapp-testing:
+    description: "Web application testing"
+    install: "npx claude-code-templates@latest --skill=development/webapp-testing --yes"
+
+  senior-frontend:
+    description: "Senior frontend developer mode"
+    install: "npx claude-code-templates@latest --skill=development/senior-frontend --yes"
+
+  senior-backend:
+    description: "Senior backend developer mode"
+    install: "npx claude-code-templates@latest --skill=development/senior-backend --yes"
+
+  senior-architect:
+    description: "Senior architect mode"
+    install: "npx claude-code-templates@latest --skill=development/senior-architect --yes"
+
+  senior-data-engineer:
+    description: "Senior data engineer mode"
+    install: "npx claude-code-templates@latest --skill=development/senior-data-engineer --yes"
+
+  senior-qa:
+    description: "Senior QA engineer mode"
+    install: "npx claude-code-templates@latest --skill=development/senior-qa --yes"
+
+  senior-ml-engineer:
+    description: "Senior ML engineer mode"
+    install: "npx claude-code-templates@latest --skill=development/senior-ml-engineer --yes"
+
+  brainstorming:
+    description: "Creative brainstorming mode"
+    install: "npx claude-code-templates@latest --skill=development/brainstorming --yes"
+
+  systematic-debugging:
+    description: "Systematic debugging approach"
+    install: "npx claude-code-templates@latest --skill=development/systematic-debugging --yes"
+
+  skill-development:
+    description: "Skill development mode"
+    install: "npx claude-code-templates@latest --skill=development/skill-development --yes"
+
+  # --- Creative Design ---
+  frontend-design:
+    description: "Frontend design mode"
+    install: "npx claude-code-templates@latest --skill=creative-design/frontend-design --yes"
+
+  ui-design-system:
+    description: "UI design system creation"
+    install: "npx claude-code-templates@latest --skill=creative-design/ui-design-system --yes"
+
+  # --- Business & Marketing ---
+  cto-advisor:
+    description: "CTO advisory mode"
+    install: "npx claude-code-templates@latest --skill=business-marketing/cto-advisor --yes"
+
+  ceo-advisor:
+    description: "CEO advisory mode"
+    install: "npx claude-code-templates@latest --skill=business-marketing/ceo-advisor --yes"
+
+  # --- AI Research ---
+  agents-langchain:
+    description: "LangChain agents development"
+    install: "npx claude-code-templates@latest --skill=ai-research/agents-langchain --yes"
+
+# ============================================================================
+# COMMANDS (utilities)
+# ============================================================================
+
+commands:
+
+  ultra-think:
+    description: "Deep thinking mode for complex problems"
+    install: "npx claude-code-templates@latest --command=utilities/ultra-think --yes"
+
+  create-architecture-documentation:
+    description: "Generate architecture documentation"
+    install: "npx claude-code-templates@latest --command=documentation/create-architecture-documentation --yes"
+
+  update-docs:
+    description: "Update project documentation"
+    install: "npx claude-code-templates@latest --command=documentation/update-docs --yes"
+
+# ============================================================================
+# MCP SERVERS (tools)
+# ============================================================================
+
+mcps:
+
+  context7:
+    description: "Context management"
+    install: "npx claude-code-templates@latest --mcp=devtools/context7 --yes"
+
+  playwright-mcp-server:
+    description: "Playwright browser automation"
+    install: "npx claude-code-templates@latest --mcp=browser_automation/playwright-mcp-server --yes"
+
+  playwright-mcp:
+    description: "Playwright MCP"
+    install: "npx claude-code-templates@latest --mcp=browser_automation/playwright-mcp --yes"
+
+  deepgraph-react:
+    description: "React component graph"
+    install: "npx claude-code-templates@latest --mcp=deepgraph/deepgraph-react --yes"
+
+  web-fetch:
+    description: "Web fetching capabilities"
+    install: "npx claude-code-templates@latest --mcp=web/web-fetch --yes"
+
+  chrome-devtools:
+    description: "Chrome DevTools integration"
+    install: "npx claude-code-templates@latest --mcp=devtools/chrome-devtools --yes"
