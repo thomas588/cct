@@ -69,6 +69,9 @@ claude --dangerously-skip-permissions -r "$LEAD_ID" -p "QUESTION|<your_name>|You
 Use **FILES** instead:
 
 ```bash
+# When starting work — signal in progress
+echo "IN_PROGRESS" > ../../.outputs/<your_name>.status
+
 # When done — write status file
 echo "DONE" > ../../.outputs/<your_name>.status
 
@@ -102,6 +105,7 @@ Orchestrator's hooks will automatically detect these files.
 
 | Message | Hierarchical (claude -r) | Flat (files) |
 |---------|--------------------------|--------------|
+| In Progress | `IN_PROGRESS\|name\|started` | `.status` = "IN_PROGRESS" |
 | Done | `DONE\|name\|path/to/result.md` | `.status` = "DONE" |
 | Error | `ERROR\|name\|desc` | `.status` = "ERROR" + `.error` file |
 | Question | `QUESTION\|name\|text` | `.question` file |

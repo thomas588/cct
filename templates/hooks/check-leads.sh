@@ -62,6 +62,16 @@ for status_file in "$OUTPUTS_DIR"/*.status; do
     WAITING)
       # Lead is waiting for something, don't process yet
       ;;
+
+    IN_PROGRESS)
+      echo ""
+      echo "══════════════════════════════════════════════════════════"
+      echo "🔄 LEAD/WORKER '$lead' НАЧАЛ РАБОТУ"
+      echo "══════════════════════════════════════════════════════════"
+
+      # Mark as acknowledged (don't process again)
+      mv "$status_file" "$status_file.ack"
+      ;;
   esac
 done
 
