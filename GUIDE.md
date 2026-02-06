@@ -167,7 +167,7 @@ leads/architecture_lead/.outputs/   ← Детальные результаты 
 ```
 ❯ /cct.flat
 
-Исследуй рынок SIEM/SOAR решений для Малайзии и Центральной Азии.
+Исследуй рынок SIEM/SOAR решений для Центральной Азии.
 Создай 5 workers:
 - market_sizing — TAM/SAM/SOM анализ
 - competitive_intel — анализ конкурентов
