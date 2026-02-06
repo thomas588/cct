@@ -4,6 +4,8 @@
 
 Orchestrate multiple Claude sessions with hierarchical team structure.
 
+**[Руководство на русском (GUIDE.md)](./GUIDE.md)** — установка, примеры, troubleshooting.
+
 ## Installation
 
 ```bash
