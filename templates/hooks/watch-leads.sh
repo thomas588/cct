@@ -30,10 +30,12 @@ while true; do
         result_file="$OUTPUTS/${name}.md"
         size=$(wc -c < "$result_file" 2>/dev/null || echo "0")
         echo "[$timestamp] DONE: $name (${size} bytes) → $result_file" >> "$NOTIFY_LOG"
+        notify-send "CCT ✅" "$name completed (${size} bytes)" 2>/dev/null
         mv "$status_file" "$status_file.processed"
         ;;
       ERROR*)
         echo "[$timestamp] ERROR: $name — $raw" >> "$NOTIFY_LOG"
+        notify-send "CCT ❌" "$name error" 2>/dev/null
         mv "$status_file" "$status_file.processed"
         ;;
       IN_PROGRESS)
@@ -58,10 +60,12 @@ while true; do
       case "$status" in
         DONE*)
           echo "[$timestamp] DONE: $lead/$name" >> "$NOTIFY_LOG"
+          notify-send "CCT ✅" "$lead/$name completed" 2>/dev/null
           mv "$status_file" "$status_file.processed"
           ;;
         ERROR*)
           echo "[$timestamp] ERROR: $lead/$name — $raw" >> "$NOTIFY_LOG"
+          notify-send "CCT ❌" "$lead/$name error" 2>/dev/null
           mv "$status_file" "$status_file.processed"
           ;;
         IN_PROGRESS)
