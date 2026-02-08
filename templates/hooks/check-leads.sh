@@ -75,6 +75,19 @@ for status_file in "$OUTPUTS_DIR"/*.status; do
   esac
 done
 
+# Show notifications from background watcher (if running)
+NOTIFY_LOG="$OUTPUTS_DIR/_notifications.log"
+if [ -f "$NOTIFY_LOG" ] && [ -s "$NOTIFY_LOG" ]; then
+  echo ""
+  echo "══════════════════════════════════════════════════════════"
+  echo "📋 BACKGROUND NOTIFICATIONS"
+  echo "══════════════════════════════════════════════════════════"
+  cat "$NOTIFY_LOG"
+  echo "══════════════════════════════════════════════════════════"
+  # Clear after showing
+  > "$NOTIFY_LOG"
+fi
+
 # Check for questions from leads
 for question_file in "$OUTPUTS_DIR"/*.question; do
   [ -f "$question_file" ] || continue

@@ -86,6 +86,19 @@ When a lead finishes, you will see:
 
 **You don't need to poll manually** — hooks do it for you!
 
+## CRITICAL: Background Watcher
+
+After launching leads/workers, start the background watcher to track progress:
+
+```bash
+systemd-run --user --unit="cct-watcher" bash .cct/hooks/watch-leads.sh
+```
+
+The watcher polls `.outputs/*.status` every 30 seconds and writes to `_notifications.log`.
+When you make any tool call, the hook will show you accumulated notifications.
+
+**Always start the watcher after launching leads.** This ensures you see status changes even if you're idle.
+
 ## CRITICAL: Two Orchestration Types
 
 You can work in two modes depending on task complexity:
